@@ -61,6 +61,7 @@ public class GridAdapter extends BaseAdapter {
         Picasso.with(context)
                 .load(item.getUrl())
                 .fit()
+                .centerCrop()
                 .placeholder(R.id.gridImage)
                 .into(holder.image);
 

@@ -192,7 +192,7 @@
 
         {
         "id":"38",
-        "funFact":"We drink about 1400 million cups of coffee every day. That’s right! Worldwide, we are consuming 1.4 billion cups of java daily."
+        "funFact":"We drink about 1400 million cups of coffee every day. That's right! Worldwide, we are consuming 1.4 billion cups of java daily."
         },
 
         {

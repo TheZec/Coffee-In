@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -76,6 +77,10 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
     SwipeRefreshLayout swipeRefreshLayout;
     @InjectView(R.id.bottom_border)
     TextView bottomBorder;
+    @InjectView(R.id.back_image)
+    ImageView backImage;
+    @InjectView(R.id.back_layout)
+    LinearLayout backLayout;
 
     private ActionBarDrawerToggle drawerToggle;
     private String[] drawerTitlesCategories;
@@ -191,7 +196,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
             }
         });
 
-        swipeRefreshLayout.setColorSchemeResources(R.color.actionbar);
+        swipeRefreshLayout.setColorSchemeResources(R.color.black_text);
 
         //get json from assets for others
         Gson gsonRecipe = new Gson();
@@ -267,7 +272,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                 drawerListRecipes.setVisibility(View.GONE);
                 favouritesList.setVisibility(View.GONE);
                 searchList.setVisibility(View.VISIBLE);
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 isSearchList = true;
             }
@@ -307,7 +312,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
 
     private void setDrawerRecipeBackButton() {
         //set recipes list header back navigation
-        header.setVisibility(View.GONE);
+        backLayout.setVisibility(View.GONE);
         bottomBorder.setVisibility(View.GONE);
         header.setText("Back to Categories");
 
@@ -316,7 +321,30 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
             public void onClick(View v) {
                 drawerListRecipes.setVisibility(View.GONE);
                 drawerCategoriesList.setVisibility(View.VISIBLE);
-                header.setVisibility(View.GONE);
+                backLayout.setVisibility(View.GONE);
+                bottomBorder.setVisibility(View.GONE);
+                favouritesList.setVisibility(View.GONE);
+                searchList.setVisibility(View.GONE);
+                setTitle(mDrawerTitle);
+                isFavList = false;
+                isRecipeList = false;
+                isSearchList = false;
+
+                isClassic = false;
+                isLatte = false;
+                isFrappe = false;
+                isWorld = false;
+                isExotic = false;
+                isCocktail = false;
+            }
+        });
+
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerListRecipes.setVisibility(View.GONE);
+                drawerCategoriesList.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.GONE);
                 bottomBorder.setVisibility(View.GONE);
                 favouritesList.setVisibility(View.GONE);
                 searchList.setVisibility(View.GONE);
@@ -346,8 +374,8 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
         final ImageView headerGridImage = (ImageView) gridHeader.findViewById(R.id.headerGridImage);
         Picasso.with(this)
                 .load(recipe.getUrl())
-                .centerCrop()
                 .fit()
+                .centerCrop()
                 .placeholder(R.id.headerGridImage)
                 .into(headerGridImage);
 
@@ -428,7 +456,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
         switch (position) {
             case 0:
                 favouritesList.setVisibility(View.VISIBLE);
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
                 drawerListRecipes.setVisibility(View.GONE);
@@ -470,7 +498,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, classic));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
@@ -488,7 +516,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, latte));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
@@ -506,7 +534,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, frappe));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
@@ -524,7 +552,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, world));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
@@ -542,7 +570,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, exotic));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);
@@ -560,7 +588,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
                     }
                 }
                 drawerListRecipes.setAdapter(new RecipesListViewAdapter(this, cocktail));
-                header.setVisibility(View.VISIBLE);
+                backLayout.setVisibility(View.VISIBLE);
                 bottomBorder.setVisibility(View.VISIBLE);
                 drawerListRecipes.setVisibility(View.VISIBLE);
                 drawerCategoriesList.setVisibility(View.GONE);

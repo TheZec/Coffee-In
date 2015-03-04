@@ -28,7 +28,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif"
-            android:textSize="@dimen/abc_text_size_title_material"
+            android:textSize="@dimen/abc_text_size_menu_material"
             android:textColor="@color/text_color"/>
 
 
