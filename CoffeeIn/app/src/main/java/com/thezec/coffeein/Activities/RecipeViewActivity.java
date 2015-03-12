@@ -95,14 +95,14 @@ public class RecipeViewActivity extends Activity {
         // get a random quote
         quote = quotesList.get(new Random().nextInt(quotesList.size()));
 
-        // initialize the GSON parser and prepare the quote list
-        Gson gson2 = new Gson();
+        // initialize the GSON parser and prepare the funFact list
+        Gson gsonFunFact = new Gson();
         try {
             // get the input stream reader for the assets json file that contains the quote
             InputStream inputStream = getAssets().open("funFacts.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             // parse the json file to create the list of quotes
-            funFactsList = gson2.fromJson(new JsonReader(inputStreamReader), new TypeToken<List<FunFacts>>() {
+            funFactsList = gsonFunFact.fromJson(new JsonReader(inputStreamReader), new TypeToken<List<FunFacts>>() {
             }.getType());
         } catch (Exception e) {
             // an error occurred, propagate it to the UI for handling
